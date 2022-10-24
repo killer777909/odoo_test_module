@@ -17,10 +17,8 @@ class CreateCustomerWizard(models.TransientModel):
         self.test_model_id.write({'customer_ids': [[0, 0, {'res_partner_id': res_partner_name_id}]]})
 
     def action_create_and_edit_customer(self):
-        self.check_unique_customer_name()
-        self.res_partner_id.create({'name': self.name})
+        self.action_create_and_add_customer()
         res_partner_name_id = self.env['res.partner'].search([('name', '=', self.name)]).id
-        self.test_model_id.write({'customer_ids': [[0, 0, {'res_partner_id': res_partner_name_id}]]})
         return {
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
