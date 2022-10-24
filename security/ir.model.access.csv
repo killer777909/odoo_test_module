@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+test_module.access_test_model,access_test_model,test_module.model_test_model,base.group_user,1,1,1,1
+test_module.access_test_model_lines,access_test_model_lines,test_module.model_test_model_lines,base.group_user,1,1,1,1
+test_module.access_test_model_create_customer,access_test_model_create_customer,test_module.model_test_model_create_customer,base.group_user,1,1,1,1

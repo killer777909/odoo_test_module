@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<odoo>
+
+        <record id="create_customer_view_form" model="ir.ui.view">
+            <field name="name">create.customer.wizard.form</field>
+            <field name="model">test.model.create.customer</field>
+            <field name="arch" type="xml">
+                <form string="Create Customer">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <footer>
+                        <button name="action_create_and_add_customer" string="Создать и добавить" type="object" class="btn-secondary" data-hotkey="a"/>
+                        <button name="action_create_and_edit_customer" string="Создать и изменить" type="object" class="btn-secondary" data-hotkey="e"/>
+                        <button string="Отменить" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="create_customer_action" model="ir.actions.act_window">
+            <field name="name">Создать клиента</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">test.model.create.customer</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="create_customer_view_form"/>
+            <field name="target">new</field>
+        </record>
+        
+</odoo>

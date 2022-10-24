@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+
+<odoo>
+
+	<record id="test_model_action" model="ir.actions.act_window">
+		<field name="name">Test Model</field>
+		<field name="res_model">test.model</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+    <record id="test_model_view_tree" model="ir.ui.view">
+		<field name="name">test.model.tree</field>
+		<field name="model">test.model</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="description"/>
+				<field name="count"/>
+				<field name="float"/>
+				<field name="money"/>
+				<field name="currency_id" invisible="1"/>
+				<field name="html"/>
+				<field name="date"/>
+				<field name="time"/>
+				<field name="checkbox"/>
+                <field name="selection"/>
+                <field name="priority" widget="priority"/>
+                <field name="file" optional="1"/>
+                <field name="image" widget="image" optional="1"/>
+                <field name="sign" widget="signature" optional="1"/>
+                <field name="doc_creator_id"/>
+                <field name="manager_id" />
+			</tree>
+		</field>
+    </record>
+
+    <record id="test_model_view_form" model="ir.ui.view">
+        <field name="name">test.model.form</field>
+        <field name="model">test.model</field>
+        <field name="arch" type="xml">
+            <form string="Test Model">
+                <sheet>
+                    <h1>
+                        <span>Наименование: </span>
+						<field name="name"/>
+					</h1>
+                    <group>
+                        <group>
+                            <field name="description" string="Описание"/>
+                            <field name="doc_creator_id"/>
+                            <field name="manager_id" attrs="{'readonly': [('doc_creator_id', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="boolean_1"/>
+                            <field name="boolean_2"/>
+                            <field name="boolean_all" readonly="0"/>
+                        </group>
+                        <group attrs="{'invisible': ['|', '&amp;', ('boolean_1', '=', True), ('doc_creator_id', '!=', False), 
+                                        '&amp;', ('boolean_2', '=', True), ('manager_id', '!=', False)]}">
+                            <field name="count"/>
+                            <field name="float"/>
+                            <field name="currency_id"/>
+                            <field name="money"/>
+                            <field name="html"/>
+                            <field name="date"/>
+                            <field name="time"/>
+                            <field name="checkbox"/>
+                            <field name="selection"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="file"/>
+                            <field name="image" widget="image"/>
+                            <field name="sign" widget="signature"/>
+                        </group>
+                    </group>
+                    <button type="action" name="%(create_customer_action)d" string="Создать и добавить клиента" class="btn btn-sm btn-primary" context="{'default_test_model_id': active_id}"/>
+                    <notebook>
+                        <page string="Клиенты">
+							<field name="customer_ids"/>
+						</page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="test_model_lines_view_form" model="ir.ui.view">
+        <field name="name">test.model.lines.form</field>
+        <field name="model">test.model.lines</field>
+        <field name="arch" type="xml">
+            <form>
+				<sheet>
+					    <group>
+							<field name="res_partner_id" string="Контакт" options="{'no_create_edit': True, 'no_create': True}"/>
+							<field name="email"/>
+						</group>
+				</sheet>
+			</form>
+        </field>
+    </record>
+
+	<record id="test_model_lines_view_tree" model="ir.ui.view">
+		<field name="name">test.model.lines.tree</field>
+		<field name="model">test.model.lines</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="res_partner_id" string="Имя контакта"/>
+				<field name="email"/>
+			</tree>
+		</field>
+    </record>
+
+    <menuitem id="test_model_menu_action" name="Test Module" action="test_model_action"/>
+
+</odoo>
